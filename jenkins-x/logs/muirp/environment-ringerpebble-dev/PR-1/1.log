@@ -1,0 +1,53 @@
+
+Showing logs for build [32mmuirp-environment-ringerpebble-1[0m stage [32mpr[0m and container [32mstep-credential-initializer-2wld7[0m
+{"level":"warn","ts":1568129597.294292,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1568129597.2950282,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mmuirp-environment-ringerpebble-1[0m stage [32mpr[0m and container [32mstep-working-dir-initializer-qk7jc[0m
+{"level":"warn","ts":1568129599.4705868,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1568129599.4792652,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source /workspace/source/env\""}
+
+Showing logs for build [32mmuirp-environment-ringerpebble-1[0m stage [32mpr[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mmuirp-environment-ringerpebble-1[0m stage [32mpr[0m and container [32mstep-git-source-muirp-environment-ringerpebble-xzpgh[0m
+{"level":"warn","ts":1568129682.084423,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1568129683.2686193,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/muirp/environment-ringerpebble-dev.git @ 1cd3291310fbd2f82b5a0173dc04991d20b66009 in path /workspace/source"}
+
+Showing logs for build [32mmuirp-environment-ringerpebble-1[0m stage [32mpr[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:c387208a4695931795ab6396c9988f59cb0a75f2,1:1cd3291310fbd2f82b5a0173dc04991d20b66009
+DEBUG: ran git fetch --unshallow origin 1cd3291310fbd2f82b5a0173dc04991d20b66009: c387208a4695931795ab6396c9988f59cb0a75f2: in 
+DEBUG: ran git checkout master in 
+DEBUG: ran git reset --hard c387208a4695931795ab6396c9988f59cb0a75f2 in 
+DEBUG: ran clean --force -d . in 
+DEBUG: ran git merge 1cd3291310fbd2f82b5a0173dc04991d20b66009 in 
+Merged SHA 1cd3291310fbd2f82b5a0173dc04991d20b66009 with commit message 'chore(config): update configuration' into base branch master
+
+Showing logs for build [32mmuirp-environment-ringerpebble-1[0m stage [32mpr[0m and container [32mstep-helm-build[0m
+rm -rf charts
+rm -rf requirements.lock
+helm init --client-only
+Creating /builder/home/.helm 
+Creating /builder/home/.helm/repository 
+Creating /builder/home/.helm/repository/cache 
+Creating /builder/home/.helm/repository/local 
+Creating /builder/home/.helm/plugins 
+Creating /builder/home/.helm/starters 
+Creating /builder/home/.helm/cache/archive 
+Creating /builder/home/.helm/repository/repositories.yaml 
+Adding stable repo with URL: https://kubernetes-charts.storage.googleapis.com 
+Adding local repo with URL: http://127.0.0.1:8879/charts 
+$HELM_HOME has been configured at /builder/home/.helm.
+Not installing Tiller due to 'client-only' flag having been set
+helm repo add jenkins-x https://storage.googleapis.com/chartmuseum.jenkins-x.io
+"jenkins-x" has been added to your repositories
+helm repo add bitnami https://charts.bitnami.com/bitnami
+"bitnami" has been added to your repositories
+helm repo add stable https://kubernetes-charts.storage.googleapis.com
+"stable" has been added to your repositories
+** step helm build --boot --provider-values-dir=../kubeProviders
+error: Validation failures in YAML file /workspace/source/**-requirements.yml:
+(root): Additional property velero is not allowed
+storage: Additional property backup is not allowed
+make: *** [build] Error 1
+[31m
+Pipeline failed on stage 'pr' : container 'step-helm-build'. The execution of the pipeline has stopped.[0m
