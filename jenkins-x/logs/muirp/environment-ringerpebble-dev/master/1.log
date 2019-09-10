@@ -1,0 +1,197 @@
+
+Showing logs for build [32mmuirp-environment-ringerpebble-dmqq7-1[0m stage [32mrelease[0m and container [32mstep-credential-initializer-n45pp[0m
+{"level":"warn","ts":1568130499.1535683,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1568130499.154164,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mmuirp-environment-ringerpebble-dmqq7-1[0m stage [32mrelease[0m and container [32mstep-working-dir-initializer-9s9gx[0m
+{"level":"warn","ts":1568130500.0119617,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1568130500.0139701,"logger":"fallback-logger","caller":"bash/main.go:65","msg":"Successfully executed command \"mkdir -p /workspace/source /workspace/source/env /workspace/source/prowConfig /workspace/source/repositories /workspace/source/systems/acme /workspace/source/systems/cm /workspace/source/systems/external-dns /workspace/source/systems/**ing /workspace/source/systems/vault\""}
+
+Showing logs for build [32mmuirp-environment-ringerpebble-dmqq7-1[0m stage [32mrelease[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mmuirp-environment-ringerpebble-dmqq7-1[0m stage [32mrelease[0m and container [32mstep-git-source-muirp-environment-ringerpebble-ld5w4[0m
+{"level":"warn","ts":1568130511.1638687,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: \"ref: refs/heads/master\" is not a valid GitHub commit ID"}
+{"level":"info","ts":1568130512.2724774,"logger":"fallback-logger","caller":"git/git.go:102","msg":"Successfully cloned https://github.com/muirp/environment-ringerpebble-dev.git @ v0.0.1 in path /workspace/source"}
+
+Showing logs for build [32mmuirp-environment-ringerpebble-dmqq7-1[0m stage [32mrelease[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:27afb877bcb3a8e30963725d3133510063303e44
+WARNING: no SHAs to merge, falling back to initial cloned commit
+
+Showing logs for build [32mmuirp-environment-ringerpebble-dmqq7-1[0m stage [32mrelease[0m and container [32mstep-validate-git[0m
+Git configured for user: jenkins-x and email jenkins-x@googlegroups.com
+
+Showing logs for build [32mmuirp-environment-ringerpebble-dmqq7-1[0m stage [32mrelease[0m and container [32mstep-verify-preinstall[0m
+no need to reconnect to cluster
+Will create public environment repos, if you want to create private environment repos, please set environmentGitPrivate to true **-requirements.yaml
+WARNING: TLS is not enabled so your webhooks will be called using HTTP. This means your webhook secret will be sent to your cluster in the clear. See https://jenkins-x.io/architecture/tls for more information
+verifying the kubernetes cluster before we try to boot Jenkins X in namespace: **
+we will try to lazily create any missing resources to get the current cluster ready to boot Jenkins X
+clearing the domain 35.189.225.115.nip.io as when using auto-DNS domains we need to regenerate to ensure its always accurate in case the cluster or ingress service is recreated
+setting the local kubernetes context to the deploy namespace **
+verifying the CLI packages
+Using namespace '**' from context named '' on server ''.
+verifying the CLI package using version stream URL: https://github.com/jenkins-x/jenkins-x-versions.git and git ref: master
+Deleting and cloning the Jenkins X versions repo
+Cloning the Jenkins X versions repo https://github.com/jenkins-x/jenkins-x-versions.git with ref refs/heads/master to /builder/home/.**/jenkins-x-versions
+
+WARNING: A different ** version 2.0.702 is available in the version stream. We highly recommend you upgrade to it.
+WARNING: To upgrade to this new version use: ** upgrade cli then re-run ** boot
+the CLI packages seem to be setup correctly kubectl, git, helm
+
+NAME               VERSION
+**                 2.0.697
+Kubernetes cluster v1.13.7-gke.8
+kubectl            v1.15.0
+helm client        Client: v2.14.1+g5270352
+git                2.21.0
+WARNING: Your requirements have not enabled cloud storage for logs - we recommend enabling this for kubernetes provider gke
+WARNING: Your requirements have not enabled cloud storage for reports - we recommend enabling this for kubernetes provider gke
+WARNING: Your requirements have not enabled cloud storage for repository - we recommend enabling this for kubernetes provider gke
+the storage looks good
+helm installed and configured
+helm client is setup
+ensure we have the helm repository https://storage.googleapis.com/chartmuseum.jenkins-x.io
+validating the kaniko secret in namespace **
+valid: there is a Secret: kaniko-secret in namespace: **
+the cluster looks good, you are ready to '** boot' now!
+
+
+Showing logs for build [32mmuirp-environment-ringerpebble-dmqq7-1[0m stage [32mrelease[0m and container [32mstep-install-jx-crds[0m
+Jenkins X CRDs upgraded with success
+
+Showing logs for build [32mmuirp-environment-ringerpebble-dmqq7-1[0m stage [32mrelease[0m and container [32mstep-install-nginx[0m
+Modified file /workspace/source/systems/**ing/Chart.yaml to set the chart to version 1
+Copying the helm source directory /workspace/source/systems/**ing to a temporary location for building and applying /tmp/**-helm-apply-554298817/**ing
+Applying helm chart at /tmp/**-helm-apply-554298817/**ing as release name **ing to namespace kube-system
+verifying the helm requirements versions in dir: . using version stream URL: https://github.com/jenkins-x/jenkins-x-versions.git and git ref: master
+Wrote chart values.yaml /tmp/**-helm-apply-554298817/**ing/values.yaml generated from directory tree
+generated helm /tmp/**-helm-apply-554298817/**ing/values.yaml
+
+nginx-ingress:
+  controller:
+    extraArgs:
+      publish-service: kube-system/**ing-nginx-ingress-controller
+    replicaCount: 3
+    service:
+      omitClusterIP: true
+  defaultBackend:
+    service:
+      omitClusterIP: true
+  rbac:
+    create: true
+
+Using values files: /tmp/**-helm-apply-554298817/**ing/values.yaml
+verifying the helm requirements versions in dir: . using version stream URL: https://github.com/jenkins-x/jenkins-x-versions.git and git ref: master
+adding version 1.19.1 to dependency nginx-ingress in file /tmp/**-helm-apply-554298817/**ing/requirements.yaml
+adding dependency versions to file /tmp/**-helm-apply-554298817/**ing/requirements.yaml
+Applying Apps chart overrides
+Applying chart overrides
+
+
+Showing logs for build [32mmuirp-environment-ringerpebble-dmqq7-1[0m stage [32mrelease[0m and container [32mstep-create-install-values[0m
+
+Waiting to find the external host name of the ingress controller Service in namespace kube-system with name **ing-nginx-ingress-controller
+No domain flag provided so using default 35.189.225.115.nip.io to generate Ingress rules
+defaulting the domain to 35.189.225.115.nip.io and modified /workspace/source/**-requirements.yml
+Disabling using external-dns as it currently only works on GKE and not nip.io domains
+
+Showing logs for build [32mmuirp-environment-ringerpebble-dmqq7-1[0m stage [32mrelease[0m and container [32mstep-install-external-dns[0m
+Modified file /workspace/source/systems/external-dns/Chart.yaml to set the chart to version 1
+Copying the helm source directory /workspace/source/systems/external-dns to a temporary location for building and applying /tmp/**-helm-apply-619009136/external-dns
+Applying helm chart at /tmp/**-helm-apply-619009136/external-dns as release name ** to namespace **
+verifying the helm requirements versions in dir: . using version stream URL: https://github.com/jenkins-x/jenkins-x-versions.git and git ref: master
+Wrote chart values.yaml /tmp/**-helm-apply-619009136/external-dns/values.yaml generated from directory tree
+generated helm /tmp/**-helm-apply-619009136/external-dns/values.yaml
+
+external-dns:
+  domainFilters:
+  - 35.189.225.115.nip.io
+  enabled: false
+  google:
+    serviceAccountSecret: external-dns-gcp-sa
+  provider: google
+  rbac:
+    create: true
+  sources:
+  - ingress
+
+Using values files: 
+verifying the helm requirements versions in dir: . using version stream URL: https://github.com/jenkins-x/jenkins-x-versions.git and git ref: master
+adding version 2.6.0 to dependency external-dns in file /tmp/**-helm-apply-619009136/external-dns/requirements.yaml
+adding dependency versions to file /tmp/**-helm-apply-619009136/external-dns/requirements.yaml
+Adding missing Helm repo: charts.bitnami.com https://charts.bitnami.com/bitnami
+Successfully added Helm repository charts.bitnami.com.
+Applying Apps chart overrides
+Applying chart overrides
+
+Showing logs for build [32mmuirp-environment-ringerpebble-dmqq7-1[0m stage [32mrelease[0m and container [32mstep-install-cert-manager-crds[0m
+customresourcedefinition.apiextensions.k8s.io/certificates.certmanager.k8s.io configured
+customresourcedefinition.apiextensions.k8s.io/challenges.certmanager.k8s.io configured
+customresourcedefinition.apiextensions.k8s.io/clusterissuers.certmanager.k8s.io configured
+customresourcedefinition.apiextensions.k8s.io/issuers.certmanager.k8s.io configured
+customresourcedefinition.apiextensions.k8s.io/orders.certmanager.k8s.io configured
+
+Showing logs for build [32mmuirp-environment-ringerpebble-dmqq7-1[0m stage [32mrelease[0m and container [32mstep-install-cert-manager[0m
+Modified file /workspace/source/systems/cm/Chart.yaml to set the chart to version 1
+Copying the helm source directory /workspace/source/systems/cm to a temporary location for building and applying /tmp/**-helm-apply-033707926/cm
+Applying helm chart at /tmp/**-helm-apply-033707926/cm as release name ** to namespace cert-manager
+verifying the helm requirements versions in dir: . using version stream URL: https://github.com/jenkins-x/jenkins-x-versions.git and git ref: master
+Wrote chart values.yaml /tmp/**-helm-apply-033707926/cm/values.yaml generated from directory tree
+generated helm /tmp/**-helm-apply-033707926/cm/values.yaml
+
+cert-manager:
+  enabled: false
+  rbac:
+    create: true
+  webhook:
+    enabled: false
+webhook:
+  enabled: false
+
+Using values files: 
+verifying the helm requirements versions in dir: . using version stream URL: https://github.com/jenkins-x/jenkins-x-versions.git and git ref: master
+adding version v0.9.1 to dependency cert-manager in file /tmp/**-helm-apply-033707926/cm/requirements.yaml
+adding dependency versions to file /tmp/**-helm-apply-033707926/cm/requirements.yaml
+Adding missing Helm repo: charts.jetstack.io https://charts.jetstack.io
+Successfully added Helm repository charts.jetstack.io.
+Applying Apps chart overrides
+Applying chart overrides
+
+Showing logs for build [32mmuirp-environment-ringerpebble-dmqq7-1[0m stage [32mrelease[0m and container [32mstep-install-acme-issuer-and-certificate[0m
+Modified file /workspace/source/systems/acme/Chart.yaml to set the chart to version 1
+Copying the helm source directory /workspace/source/systems/acme to a temporary location for building and applying /tmp/**-helm-apply-570029005/acme
+Applying helm chart at /tmp/**-helm-apply-570029005/acme as release name ** to namespace **
+verifying the helm requirements versions in dir: . using version stream URL: https://github.com/jenkins-x/jenkins-x-versions.git and git ref: master
+Ignoring templates/cert-manager-prod-certificate.yaml
+Ignoring templates/cert-manager-prod-issuer.yaml
+Ignoring templates/cert-manager-staging-certificate.yaml
+Ignoring templates/cert-manager-staging-issuer.yaml
+Wrote chart values.yaml /tmp/**-helm-apply-570029005/acme/values.yaml generated from directory tree
+generated helm /tmp/**-helm-apply-570029005/acme/values.yaml
+
+certmanager:
+  email: ""
+  enabled: false
+  production: "false"
+cluster:
+  domain: 35.189.225.115.nip.io
+  projectID: apps-dev-229310
+
+Using values files: 
+no requirements file: /tmp/**-helm-apply-570029005/acme/requirements.yaml so not checking for missing versions
+Applying Apps chart overrides
+Applying chart overrides
+
+Showing logs for build [32mmuirp-environment-ringerpebble-dmqq7-1[0m stage [32mrelease[0m and container [32mstep-install-vault[0m
+not attempting to boot Vault as using secret storage: local
+
+Showing logs for build [32mmuirp-environment-ringerpebble-dmqq7-1[0m stage [32mrelease[0m and container [32mstep-helm-populate-params[0m
+defaulting to secret storage scheme local found from requirements file at /workspace/source/**-requirements.yml
+defaulting to secret base path to the cluster name ringerpebble found from requirements file at /workspace/source/**-requirements.yml
+generated schema file /workspace/source/env/parameters.schema.json from template /workspace/source/env/parameters.tmpl.schema.json
+
+Jenkins X Admin Username ***** [Automatically accepted existing value]
+error: asking questions for schema: EOF
+[1;92m? [0m[1;99mJenkins X Admin Password [0m[36m[? for help][0m [?25l7[999;999f[6n[6n
+[31m
+Pipeline failed on stage 'release' : container 'step-helm-populate-params'. The execution of the pipeline has stopped.[0m
