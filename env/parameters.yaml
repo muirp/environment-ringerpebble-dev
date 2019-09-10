@@ -1,0 +1,10 @@
+adminUser:
+  password: local:ringerpebble/adminUser:password
+  username: admin
+enableDocker: false
+pipelineUser:
+  email: pmuir@bleepbleep.org.uk
+  token: local:ringerpebble/pipelineUser:token
+  username: muirp-owner
+prow:
+  hmacToken: local:ringerpebble/prow:hmacToken
